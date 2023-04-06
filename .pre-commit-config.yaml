@@ -1,0 +1,72 @@
+# © 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
+#
+# SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+ci:
+  skip:
+    - pip-compile
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: check-case-conflict
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v3.0.0-alpha.6"
+    hooks:
+      - id: prettier
+        additional_dependencies:
+          - prettier@2
+          - prettier-plugin-svelte@2
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: "v8.37.0"
+    hooks:
+      - id: eslint
+        types_or:
+          - svelte
+          - javascript
+          - ts
+        pass_filenames: false
+        additional_dependencies:
+          - "eslint"
+          - "eslint-config-prettier"
+          - "eslint-plugin-svelte3"
+          - "prettier@2"
+          - "@typescript-eslint/eslint-plugin"
+          - "@typescript-eslint/parser"
+  - repo: local
+    hooks:
+      - id: svelte-check
+        name: Check code with svelte-check
+        entry: svelte-check
+        language: node
+        types_or:
+          - svelte
+          - html
+          - css
+          - ts
+        pass_filenames: false
+        additional_dependencies:
+          - "svelte"
+          - "svelte-check"
+          - "typescript"
+        args: ["--tsconfig", "./tsconfig.json"]
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v1.1.2
+    hooks:
+      - id: reuse
