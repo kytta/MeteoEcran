@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/kit/vite";
 
 /** @type {import('@sveltejs/kit').Config} */
