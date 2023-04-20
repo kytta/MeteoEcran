@@ -2,10 +2,4 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
-__pycache__/
-
-/dist
-
-.env
-.env.*
-!.env.example
+__version__ = "0.0.1"

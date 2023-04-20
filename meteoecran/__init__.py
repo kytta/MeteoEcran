@@ -2,10 +2,8 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
-__pycache__/
+from meteoecran.web import app
 
-/dist
-
-.env
-.env.*
-!.env.example
+__all__ = [
+    "app",
+]

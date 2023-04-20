@@ -1,0 +1,33 @@
+/*
+ * © 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
+ *
+ * SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+ */
+
+.title {
+	font-size: 10vh;
+}
+
+.condition {
+	font-weight: bolder;
+	padding: 0 0.25em;
+}
+
+.now {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 16px;
+	margin-bottom: 20vh;
+}
+
+.tomorrow {
+	border-top: 1px solid #888;
+	padding-top: 16px;
+}
+
+.temperature {
+	font-size: 30vh;
+	font-weight: 300;
+}

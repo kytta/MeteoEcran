@@ -1,0 +1,13 @@
+{#
+© 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
+
+SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+#}
+
+{% extends "base.html.jinja" %}
+
+{% block content %}
+<div hx-get="" hx-trigger="every 1m" hx-params="*">
+{% include 'partial_weather.html.jinja' %}
+</div>
+{% endblock content %}
