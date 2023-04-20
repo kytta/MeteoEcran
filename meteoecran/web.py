@@ -69,10 +69,8 @@ async def geo(request):
             status_code=400,
         )
 
-    lat = float(lat)
-    lon = float(lon)
-
-    weather = api.get_weather_for_location(api.GeoLocation(lat, lon))
+    weather = api.get_weather_for_location(
+        api.GeoLocation(float(lat), float(lon)))
 
     is_htmx = "HX-Request" in request.headers
 
