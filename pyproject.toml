@@ -32,25 +32,10 @@ Source = "https://github.com/kytta/MeteoEcran"
 path = "meteoecran/__about__.py"
 
 [tool.hatch.envs.default]
-dependencies = [
-    "covdefaults",
-    "coverage[toml]>=6.5",
-    "pytest",
-]
 python = "3.9"
 
 [tool.hatch.envs.default.scripts]
 dev = "uvicorn --reload meteoecran:app"
-test = "pytest {args:tests}"
-test-cov = "coverage run -m pytest {args:tests}"
-cov-report = [
-    "- coverage combine",
-    "coverage report",
-]
-cov = [
-    "test-cov",
-    "cov-report",
-]
 
 [tool.hatch.envs.lint]
 detached = true
@@ -60,10 +45,10 @@ dependencies = [
     "ruff>=0.0.243",
 ]
 [tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:meteoecran tests}"
+typing = "mypy --install-types --non-interactive {args:meteoecran}"
 style = [
     "ruff {args:.}",
-    "autopep8 --diff {args:.}",
+    "autopep8 --diff --recursive {args:.}",
 ]
 fmt = [
     "autopep8 --in-place --recursive {args:.}",
@@ -86,9 +71,6 @@ compile = "pip-compile --header --annotate --output-file=requirements.txt --allo
 
 [tool.autopep8]
 ignore = ["W503"]
-
-[tool.coverage.run]
-plugins = ["covdefaults"]
 
 [tool.mypy]
 check_untyped_defs = true
@@ -133,7 +115,6 @@ select = [
     "INP",
     "PIE",
     "T20",
-    "PT",
     "Q",
     "RSE",
     "RET",
@@ -155,19 +136,6 @@ unfixable = [
     "ERA",
     # Don't touch unused imports
     "F401",
-]
-
-[tool.ruff.per-file-ignores]
-"src/*" = [
-    "PT",
-]
-"tests/*" = [
-    "ANN",  # type annotations
-    "D",  # docstrings
-    "FBT001",  # Boolean positional arg in function definition
-    "PLR0913",  # too many function arguments
-    "PLR2004",  # magic values
-    "S101",  # use of assert detected
 ]
 
 [tool.ruff.flake8-annotations]
