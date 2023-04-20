@@ -28,24 +28,12 @@ SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 		}
 	</style>
 
+	{% block extra_head %}{% endblock extra_head %}
+
 	<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js" integrity="sha256-B/ef37ds8F6TYyf8o9fLmpoxxXe1Tm2cO30jGN5hhRA=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.0/dist/htmx.min.js" integrity="sha256-l986378juHPZo6gPcUPYAaMmBLop3poz8hqSoXEHaqg=" crossorigin="anonymous"></script>
  </head>
  <body>
- 	{% block content %}
- 		<form action="/search">
- 			<label for="query">Search query</label>
- 			<input type="search" id="query" name="q">
- 			<input type="submit" value="Search">
- 		</form>
-
- 		<form action="geo">
- 			<label for="lat">Latitude</label>
- 			<input type="number" id="lat" name="lat">
- 			<label for="lon">Longitude</label>
- 			<input type="number" id="lon" name="lon">
- 			<input type="submit" value="Go">
- 		</form>
- 	{% endblock content %}
+ 	{% block content %}{% endblock content %}
  </body>
  </html>

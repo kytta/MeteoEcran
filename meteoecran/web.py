@@ -21,7 +21,7 @@ templates = Jinja2Templates(directory=SOURCE_DIR / "templates")
 
 
 async def homepage(request):
-    return templates.TemplateResponse("base.html.jinja", {
+    return templates.TemplateResponse("index.html.jinja", {
         "request": request,
         "title": "MeteoEcran",
         "lang": "en",
