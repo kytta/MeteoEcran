@@ -5,6 +5,8 @@ SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 #}
 
 <div class="title">
+	{{ now.weekday }}, <b>{{ now.date }}</b> um <b>{{ now.time }}</b>
+	<br>
 	{{ weather.current.condition.prefix }}
 	<span class="condition" style="background-color:{{ weather.current.condition.color }}"><iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
 		{{ weather.current.condition.condition }}</span>
@@ -18,8 +20,9 @@ SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 <section class="tomorrow">
 	<div class="title">
 		<strong>Morgen:</strong>
-		<Icon inline icon={conditionTomorrow.icon} width="10vh" height="10vh" />
-		{{ weather_data.tomorrow.min_t }}...{{ weather_data.tomorrow.max_t }}
+		<iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
+		<Icon inline icon={{ weather.tomorrow.condition.icon }} width="10vh" height="10vh" />
+		{{ weather.tomorrow.temperature[0]|round|int }}...{{ weather.tomorrow.temperature[1]|round|int }}
 		&deg;C
 	</div>
 </section>

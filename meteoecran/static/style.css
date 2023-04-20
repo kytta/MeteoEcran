@@ -50,7 +50,7 @@ form > div > input[type="submit"] {
 	align-items: center;
 	justify-content: flex-start;
 	gap: 16px;
-	margin-bottom: 20vh;
+	margin-bottom: 10vh;
 }
 
 .tomorrow {

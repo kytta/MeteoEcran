@@ -257,4 +257,5 @@ class WeatherState(TypedDict):
 
 class Forecast(TypedDict):
     date: datetime.date
+    condition: WeatherCondition
     temperature: MinMax

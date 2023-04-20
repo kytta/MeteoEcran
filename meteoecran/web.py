@@ -2,8 +2,10 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
+import datetime
 from pathlib import Path
 from typing import Optional
+from zoneinfo import ZoneInfo
 
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
@@ -15,6 +17,8 @@ from starlette.templating import Jinja2Templates
 
 from meteoecran import api
 from meteoecran.types import GeoLocation
+
+ONE_DAY = datetime.timedelta(days=1)
 
 SOURCE_DIR = Path(__file__).parent
 
@@ -77,6 +81,8 @@ async def geo(request):
 
     is_htmx = "HX-Request" in request.headers
 
+    now = datetime.datetime.now(tz=ZoneInfo("Europe/Berlin"))
+
     return templates.TemplateResponse(
         "partial_weather.html.jinja" if is_htmx else "weather.html.jinja",
         {
@@ -84,14 +90,14 @@ async def geo(request):
             "title": f"Weather in {name}",
             "lang": "en",
             "location_name": name,
+            "now": {
+                "weekday": now.strftime("%A"),
+                "time": now.strftime("%H:%M"),
+                "date": now.strftime("%x"),
+            },
             "weather": {
                 "current": weather["current"],
-            },
-            "weather_data": {
-                "tomorrow": {
-                    "min_t": round(weather["daily"]["temperature_2m_min"][1]),
-                    "max_t": round(weather["daily"]["temperature_2m_max"][1]),
-                },
+                "tomorrow": weather["daily"][1],
             },
         },
     )

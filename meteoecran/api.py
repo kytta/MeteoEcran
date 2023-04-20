@@ -2,11 +2,14 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
+import datetime
 from typing import Optional
 
 import httpx
 
+from meteoecran.types import Forecast
 from meteoecran.types import GeoLocation
+from meteoecran.types import MinMax
 from meteoecran.types import Temperature
 from meteoecran.types import WeatherConditionCode
 from meteoecran.types import WeatherState
@@ -79,6 +82,29 @@ def get_geolocation_for_query(query: str) -> Optional[GeoLocation]:
     return GeoLocation(results[0]["lat"], results[0]["lon"])
 
 
+def convert_daily_to_forecast(daily_json: dict) -> list[Forecast]:
+    result = []
+
+    zipped = zip(
+        daily_json["time"],
+        daily_json["weathercode"],
+        daily_json["temperature_2m_max"],
+        daily_json["temperature_2m_min"],
+    )
+
+    for date, code, t_max, t_min in zipped:
+        result.append(Forecast(
+            date=datetime.date.fromisoformat(date),
+            condition=get_condition_from_code(code),
+            temperature=MinMax(
+                t_min,
+                t_max,
+            ),
+        ))
+
+    return result
+
+
 def get_weather_for_location(location: GeoLocation):
     with httpx.Client(base_url=METEO_URL) as client:
         r = client.get(
@@ -100,8 +126,6 @@ def get_weather_for_location(location: GeoLocation):
     )
 
     return {
-        "city": "Blah-blah",
         "current": current,
-        "current_weather": result["current_weather"],
-        "daily": result["daily"],
+        "daily": convert_daily_to_forecast(result["daily"]),
     }
