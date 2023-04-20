@@ -5,7 +5,6 @@
 import datetime
 from pathlib import Path
 from typing import Optional
-from zoneinfo import ZoneInfo
 
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
@@ -16,6 +15,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 from meteoecran import api
+from meteoecran import config
 from meteoecran.types import GeoLocation
 
 ONE_DAY = datetime.timedelta(days=1)
@@ -81,7 +81,7 @@ async def geo(request):
 
     is_htmx = "HX-Request" in request.headers
 
-    now = datetime.datetime.now(tz=ZoneInfo("Europe/Berlin"))
+    now = datetime.datetime.now(tz=config.TIMEZONE)
 
     return templates.TemplateResponse(
         "partial_weather.html.jinja" if is_htmx else "weather.html.jinja",
@@ -112,4 +112,4 @@ routes = [
     Mount("/static", app=static_files, name="static"),
 ]
 
-app = Starlette(debug=False, routes=routes)
+app = Starlette(debug=config.DEBUG, routes=routes)
