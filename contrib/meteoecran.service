@@ -1,0 +1,21 @@
+# © 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
+#
+# SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+
+[Unit]
+Description=MeteoEcran, current weather and forecast for digital signage
+After=network.target
+
+[Service]
+User=<YOUR_USER>
+Group=<YOUR_GROUP>
+WorkingDirectory=/srv/meteoecran
+Environment="PATH=/srv/meteoecran/venv/bin"
+ExecStart=/srv/meteoecran/venv/bin/gunicorn \
+          --workers 2 \
+          --worker-class meteoecran.MeteoEcranWorker \
+          --bind unix:/tmp/meteoecran.sock \
+          meteoecran:app
+
+[Install]
+WantedBy=multi-user.target

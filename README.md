@@ -7,6 +7,38 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 > Current weather and forecast for digital signage
 
+## Deploy
+
+1. Clone the project
+
+2. **(recommended)** Create a virtualenv for the project
+
+   ```sh
+   virtualenv --python python3.9 --no-download --no-periodic-update venv
+   ```
+
+3. Install dependencies
+
+   ```sh
+   . venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+4. Define settings as environment variables and/or inside the `.env` file
+
+5. You can now run the app. For production, it's recommended you use Gunicorn:
+
+   ```sh
+   gunicorn \
+          --workers 2 \  # Gunicorn recommends 2-4 workers per core
+          --worker-class meteoecran.MeteoEcranWorker \
+          --bind unix:/run/gunicorn.sock \  # you can also bind to a port
+          meteoecran:app
+   ```
+
+   Inside [`contrib/`](./contrib/) you can find example files, like systemd
+   services, Nginx configs, etc.
+
 ## Licence
 
 © 2023 [Nikita Karamov]\
