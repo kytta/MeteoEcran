@@ -11,7 +11,7 @@ name = "MeteoEcran"
 dynamic = ["version"]
 description = "Current weather and forecast for digital signage"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.9,<3.10"
 license = "EUPL-1.2 OR AGPL-3.0-only"
 authors = [
     { name = "Nikita Karamov", email = "me@kytta.dev" },
@@ -37,6 +37,7 @@ dependencies = [
     "coverage[toml]>=6.5",
     "pytest",
 ]
+python = "3.9"
 
 [tool.hatch.envs.default.scripts]
 dev = "uvicorn --reload meteoecran:app"
@@ -50,9 +51,6 @@ cov = [
     "test-cov",
     "cov-report",
 ]
-
-[[tool.hatch.envs.all.matrix]]
-python = ["3.9", "3.10", "3.11"]
 
 [tool.hatch.envs.lint]
 detached = true
@@ -108,6 +106,7 @@ disallow_incomplete_defs = false
 disallow_untyped_defs = false
 
 [tool.ruff]
+target-version = "py39"
 line-length = 79
 select = [
     "F",
