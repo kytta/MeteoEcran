@@ -232,22 +232,22 @@ class WeatherCondition(TypedDict):
     color: str
     icon: str
 
-    @classmethod
-    def from_code(cls, code: WeatherConditionCode):
-        kwargs = {
-            "prefix": "Das Wetter ist",
-            "condition": "unbekannt",
-            "icon": "material-symbols:question-mark-rounded",
-            "color": "#ccc",
-        }
 
-        if code in CODE_CONDITION_MAP:
-            kwargs = CODE_CONDITION_MAP[code]
+def get_condition_from_code(code: WeatherConditionCode):
+    kwargs = {
+        "prefix": "Das Wetter ist",
+        "condition": "unbekannt",
+        "icon": "material-symbols:question-mark-rounded",
+        "color": "#ccc",
+    }
 
-        return cls(
-            code=code,
-            **kwargs,
-        )
+    if code in CODE_CONDITION_MAP:
+        kwargs = CODE_CONDITION_MAP[code]
+
+    return WeatherCondition(
+        code=code,
+        **kwargs,
+    )
 
 
 class WeatherState(TypedDict):

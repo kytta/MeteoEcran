@@ -8,9 +8,9 @@ from typing import Optional
 import httpx
 
 from meteoecran.types import Temperature
-from meteoecran.types import WeatherCondition
 from meteoecran.types import WeatherConditionCode
 from meteoecran.types import WeatherState
+from meteoecran.types import get_condition_from_code
 
 GEOCODE_URL = "https://geocode.maps.co"
 METEO_URL = "https://api.open-meteo.com/v1/dwd-icon"
@@ -73,7 +73,7 @@ def get_weather_for_location(location: GeoLocation):
     result = r.json()
 
     current = WeatherState(
-        condition=WeatherCondition.from_code(
+        condition=get_condition_from_code(
             WeatherConditionCode(result["current_weather"]["weathercode"]),
         ),
         temperature=Temperature(result["current_weather"]["temperature"]),
