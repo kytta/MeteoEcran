@@ -1,9 +1,6 @@
 # © 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
-ci:
-  skip:
-    - pip-compile
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -45,16 +42,6 @@ repos:
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
-  - repo: https://github.com/jazzband/pip-tools
-    rev: 6.13.0
-    hooks:
-      - id: pip-compile
-        args:
-          - "--allow-unsafe"
-          - "--generate-hashes"
-          - "--resolver=backtracking"
-          - "pyproject.toml"
-        files: ^pyproject.toml|requirements.txt$
   - repo: https://github.com/fsfe/reuse-tool
     rev: v1.1.2
     hooks:
