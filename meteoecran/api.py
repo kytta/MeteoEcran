@@ -22,7 +22,7 @@ METEO_PARAMS = {
         "precipitation",
         "weathercode",
         "windspeed_10m",
-        "winddirection_10",
+        "winddirection_10m",
     )),
     "minutely_15": "precipitation",
     "daily": ",".join((
