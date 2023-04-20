@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 from pathlib import Path
+from typing import Optional
 
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
@@ -28,7 +29,7 @@ async def homepage(request):
 
 
 async def search(request):
-    query: str | None = request.query_params.get("q", None)
+    query: Optional[str] = request.query_params.get("q", None)
 
     if not query:
         return JSONResponse(
@@ -57,8 +58,8 @@ async def search(request):
 
 
 async def geo(request):
-    lat: str | None = request.query_params.get("lat", None)
-    lon: str | None = request.query_params.get("lon", None)
+    lat: Optional[str] = request.query_params.get("lat", None)
+    lon: Optional[str] = request.query_params.get("lon", None)
 
     if not (lat and lon):
         return JSONResponse(

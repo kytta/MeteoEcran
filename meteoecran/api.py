@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 from typing import NamedTuple
+from typing import Optional
 
 import httpx
 
@@ -41,7 +42,7 @@ class GeoLocation(NamedTuple):
     longitude: float
 
 
-def get_geolocation_for_query(query: str) -> GeoLocation | None:
+def get_geolocation_for_query(query: str) -> Optional[GeoLocation]:
     with httpx.Client(base_url=GEOCODE_URL) as client:
         r = client.get(
             "/search",
