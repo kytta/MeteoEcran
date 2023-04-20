@@ -17,10 +17,10 @@ authors = [
     { name = "Nikita Karamov", email = "me@kytta.dev" },
 ]
 dependencies = [
+    "httpx>=0.24",
     "starlette[full]",
     "uvicorn[standard]",
-    "httpx>=0.24",
-    "rich",
+    "gunicorn",
 ]
 
 [project.urls]
