@@ -15,3 +15,8 @@ LOCALE = config("LOCALE", default=False)
 
 if LOCALE:
     locale.setlocale(locale.LC_ALL, LOCALE)
+
+uvicorn_kwargs = {
+    "log_level": "trace" if DEBUG else "info",
+    "reload": DEBUG,
+}
