@@ -79,6 +79,7 @@ all = [
 
 [tool.hatch.envs.reqs]
 detached = true
+python = "3.9"
 dependencies = [
     "pip-tools>=6",
 ]
