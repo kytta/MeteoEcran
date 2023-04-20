@@ -2,11 +2,11 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
-from typing import NamedTuple
 from typing import Optional
 
 import httpx
 
+from meteoecran.types import GeoLocation
 from meteoecran.types import Temperature
 from meteoecran.types import WeatherConditionCode
 from meteoecran.types import WeatherState
@@ -37,9 +37,29 @@ METEO_PARAMS = {
 }
 
 
-class GeoLocation(NamedTuple):
-    latitude: float
-    longitude: float
+def get_name_for_location(location: GeoLocation):
+    with httpx.Client(base_url=GEOCODE_URL) as client:
+        r = client.get(
+            "/reverse",
+            params={
+                "lat": location.latitude,
+                "lon": location.longitude,
+            },
+        )
+
+    r_json = r.json()
+    address = r_json["address"]
+
+    if "village" in address:
+        return address["village"]
+
+    if "town" in address:
+        return address["town"]
+
+    if "city" in address:
+        return address["city"]
+
+    return r_json["display_name"]
 
 
 def get_geolocation_for_query(query: str) -> Optional[GeoLocation]:

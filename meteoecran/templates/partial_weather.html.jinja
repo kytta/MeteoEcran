@@ -6,10 +6,9 @@ SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 <div class="title">
 	{{ weather.current.condition.prefix }}
-	<span class="condition" style="background-color:{{ weather.current.condition.color }}">
-		<iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
-		{{ weather.current.condition.condition }}
-	</span>
+	<span class="condition" style="background-color:{{ weather.current.condition.color }}"><iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
+		{{ weather.current.condition.condition }}</span>
+	in {{ location_name }}
 </div>
 <section class="now">
 	<div class="temperature">

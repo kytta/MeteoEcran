@@ -14,6 +14,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 from meteoecran import api
+from meteoecran.types import GeoLocation
 
 SOURCE_DIR = Path(__file__).parent
 
@@ -69,8 +70,10 @@ async def geo(request):
             status_code=400,
         )
 
-    weather = api.get_weather_for_location(
-        api.GeoLocation(float(lat), float(lon)))
+    location = GeoLocation(float(lat), float(lon))
+
+    weather = api.get_weather_for_location(location)
+    name = api.get_name_for_location(location)
 
     is_htmx = "HX-Request" in request.headers
 
@@ -78,9 +81,9 @@ async def geo(request):
         "partial_weather.html.jinja" if is_htmx else "weather.html.jinja",
         {
             "request": request,
-            "title": "MeteoEcran",
+            "title": f"Weather in {name}",
             "lang": "en",
-            "city": weather["city"],
+            "location_name": name,
             "weather": {
                 "current": weather["current"],
             },
