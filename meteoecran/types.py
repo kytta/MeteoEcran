@@ -5,21 +5,16 @@
 import datetime
 from enum import IntEnum
 from types import MappingProxyType
-from typing import Generic
 from typing import NamedTuple
 from typing import NewType
 from typing import TypedDict
-from typing import TypeVar
-
-T = TypeVar("T")
-
-
-class MinMax(NamedTuple, Generic[T]):
-    minimum: T
-    maximum: T
-
 
 Temperature = NewType("Temperature", float)
+
+
+class MinMax(NamedTuple):
+    minimum: Temperature
+    maximum: Temperature
 
 
 class GeoLocation(NamedTuple):
@@ -262,4 +257,4 @@ class WeatherState(TypedDict):
 
 class Forecast(TypedDict):
     date: datetime.date
-    temperature: MinMax[Temperature]
+    temperature: MinMax
