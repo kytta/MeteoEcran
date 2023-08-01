@@ -11,22 +11,22 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 
 1. Clone the project
 
-2. **(recommended)** Create a virtualenv for the project
+1. **(recommended)** Create a virtualenv for the project
 
    ```sh
    virtualenv --python python3.9 --no-download --no-periodic-update venv
    ```
 
-3. Install dependencies
+1. Install dependencies
 
    ```sh
    . venv/bin/activate
    pip install -r requirements.txt
    ```
 
-4. Define settings as environment variables and/or inside the `.env` file
+1. Define settings as environment variables and/or inside the `.env` file
 
-5. You can now run the app. For production, it's recommended you use Gunicorn:
+1. You can now run the app. For production, it's recommended you use Gunicorn:
 
    ```sh
    gunicorn \
@@ -42,20 +42,20 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 ## Licence
 
 © 2023 [Nikita Karamov]\
-Dual-licensed under the [European Union Public License 1.2][EUPL-1.2] and
-[GNU Affero General Public License v3.0 only][AGPL-3.0-only].\
+Dual-licensed under the [European Union Public License 1.2][eupl-1.2] and
+[GNU Affero General Public License v3.0 only][agpl-3.0-only].\
 Config files and examples are licensed under the
-[BSD 2-Clause "Simplified" License][BSD-2-Clause].\
+[BSD 2-Clause "Simplified" License][bsd-2-clause].\
 Documentation is licensed under the
-[Creative Commons Attribution Share Alike 4.0 International][CC-BY-SA-4.0].
+[Creative Commons Attribution Share Alike 4.0 International][cc-by-sa-4.0].
 
----
+______________________________________________________________________
 
 This project is hosted on GitHub:
 <https://github.com/kytta/MeteoEcran.git>
 
 [agpl-3.0-only]: https://spdx.org/licenses/AGPL-3.0-only.html
-[BSD-2-Clause]: https://spdx.org/licenses/BSD-2-Clause.html
-[CC-BY-SA-4.0]: https://spdx.org/licenses/CC-BY-SA-4.0.html
+[bsd-2-clause]: https://spdx.org/licenses/BSD-2-Clause.html
+[cc-by-sa-4.0]: https://spdx.org/licenses/CC-BY-SA-4.0.html
 [eupl-1.2]: https://spdx.org/licenses/EUPL-1.2.html
 [nikita karamov]: https://www.kytta.dev/

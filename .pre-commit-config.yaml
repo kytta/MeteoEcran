@@ -35,8 +35,18 @@ repos:
     rev: "v3.0.0"
     hooks:
       - id: prettier
-        additional_dependencies:
-          - prettier@2
+        types_or:
+          - html
+          - css
+          - javascript
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.16
+    hooks:
+    - id: mdformat
+      additional_dependencies:
+      - mdformat-gfm
+      - mdformat-frontmatter
+      - mdformat-footnote
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.281
     hooks:
