@@ -7,7 +7,7 @@ SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 {% extends "base.html.jinja" %}
 
 {% block content %}
-<div hx-get="" hx-trigger="every 1m" hx-params="*">
+<main class="weather" hx-get="" hx-trigger="every 1m" hx-params="*">
 {% include 'partial_weather.html.jinja' %}
-</div>
+</main>
 {% endblock content %}

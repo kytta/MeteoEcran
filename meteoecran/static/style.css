@@ -4,24 +4,23 @@
  * SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
  */
 
-/* Control group */
 form > div {
 	margin-block-end: 0.5em;
 }
 
 form > div > label {
-	display: inline-block;
-	margin-inline-end: 1rem;
 	text-align: end;
 	vertical-align: middle;
-	width: 10em;
 	font-style: 100%;
+	width: 10em;
+	margin-inline-end: 1rem;
+	display: inline-block;
 }
 
 form > div > input:not([type="submit"]) {
-	display: inline-block;
-	padding: 0.25em 0.3em;
 	vertical-align: middle;
+	padding: 0.25em 0.3em;
+	display: inline-block;
 }
 
 form > .controls {
@@ -29,36 +28,87 @@ form > .controls {
 }
 
 form > div > input[type="submit"] {
-	display: inline-block;
-	padding: 0.25em 0.3em;
-	min-width: 5em;
 	vertical-align: middle;
+	min-width: 5em;
+	padding: 0.25em 0.3em;
+	display: inline-block;
 }
 
-.title {
-	font-size: 10vh;
+main.weather {
+	--minute-section-height: 0fr;
+
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 6fr var(--minute-section-height);
+	grid-template-areas:
+		"place place date date time time"
+		"now now now next next next"
+		"minute minute minute minute minute minute";
 }
 
-.condition {
-	font-weight: bolder;
-	padding: 0 0.25em;
+main.weather.has-minute {
+	--minute-section-height: 1fr;
+}
+
+.place,
+.date,
+.time {
+	padding: 2vh 1vw;
+	font-size: 5vh;
+}
+
+.place {
+	grid-area: place;
+}
+
+.date {
+	grid-area: date;
+	justify-self: center;
+}
+
+.time {
+	grid-area: time;
+	justify-self: end;
 }
 
 .now {
+	flex-direction: column;
+	grid-area: now;
+	justify-content: end;
+	align-items: start;
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	gap: 16px;
-	margin-bottom: 10vh;
+	padding-left: 2vw;
 }
 
-.tomorrow {
-	border-top: 1px solid #888;
-	padding-top: 16px;
+.now .condition {
+	font-size: 10vh;
+	margin-bottom: 4vh;
 }
 
-.temperature {
-	font-size: 30vh;
+.now .condition iconify-icon {
+	margin-right: 0.25em;
+	vertical-align: middle;
+}
+
+.now .temperature {
+	font-size: 35vh;
 	font-weight: 300;
+}
+
+.minute {
+	grid-area: minute;
+}
+
+.next {
+	grid-area: next;
+	border-top: 1px solid #888;
+	font-size: 7vh;
+
+	display: grid;
+	grid-auto-rows: 1fr;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-items: center;
 }

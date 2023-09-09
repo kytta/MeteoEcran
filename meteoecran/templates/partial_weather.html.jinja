@@ -4,24 +4,31 @@
 SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 #}
 
-<div class="title">
-	{{ now.weekday }}, <b>{{ now.date }}</b> um <b>{{ now.time }}</b>
-	<br>
-	{{ weather.current.condition.prefix }}
-	<span class="condition" style="background-color:{{ weather.current.condition.color }}"><iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
-		{{ weather.current.condition.condition }}</span>
-	in {{ location_name }}
+<div class="place">
+	{{ location_name }}
 </div>
-<section class="now">
+<div class="date">
+	{{ now.weekday }}, {{ now.date }}
+</div>
+<div class="time">
+	{{ now.time }}
+</div>
+<section
+	class="now"
+	style="background-color:{{ weather.current.condition.color }}"
+>
+	<div class="condition">
+		<iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
+		{{- weather.current.condition.condition -}}
+	</div>
 	<div class="temperature">
 		{{ weather.current.temperature|round|int }} &deg;C
 	</div>
 </section>
-<section class="tomorrow">
-	<div class="title">
-		<strong>Morgen:</strong>
-		<iconify-icon inline icon="{{ weather.current.condition.icon }}"></iconify-icon>
-		<Icon inline icon={{ weather.tomorrow.condition.icon }} width="10vh" height="10vh" />
+<section class="next">
+	<span>Morgen</span>
+	<div>
+		<iconify-icon inline icon="{{ weather.tomorrow.condition.icon }}"></iconify-icon>
 		{{ weather.tomorrow.temperature[0]|round|int }}...{{ weather.tomorrow.temperature[1]|round|int }}
 		&deg;C
 	</div>
