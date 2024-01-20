@@ -6,6 +6,10 @@ ci:
   autoupdate_schedule: quarterly
 
 repos:
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v2.1.0
+    hooks:
+      - id: reuse
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
@@ -65,7 +69,3 @@ repos:
         types_or:
           - jinja
           - html
-  - repo: https://github.com/fsfe/reuse-tool
-    rev: v2.1.0
-    hooks:
-      - id: reuse
