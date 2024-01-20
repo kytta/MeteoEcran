@@ -6,8 +6,12 @@ ci:
   autoupdate_schedule: quarterly
 
 repos:
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v3.0.1
+    hooks:
+      - id: reuse
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
@@ -35,9 +39,11 @@ repos:
     hooks:
       - id: autopep8
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v3.0.3"
+    rev: "v4.0.0-alpha.8"
     hooks:
       - id: prettier
+        additional_dependencies:
+          - prettier@3
         types_or:
           - html
           - css
@@ -51,7 +57,7 @@ repos:
       - mdformat-frontmatter
       - mdformat-footnote
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.292
+    rev: v0.1.14
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -63,7 +69,3 @@ repos:
         types_or:
           - jinja
           - html
-  - repo: https://github.com/fsfe/reuse-tool
-    rev: v2.1.0
-    hooks:
-      - id: reuse
