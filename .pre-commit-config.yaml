@@ -7,7 +7,7 @@ ci:
 
 repos:
   - repo: https://github.com/fsfe/reuse-tool
-    rev: v2.1.0
+    rev: v3.0.1
     hooks:
       - id: reuse
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -57,7 +57,7 @@ repos:
       - mdformat-frontmatter
       - mdformat-footnote
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.9
+    rev: v0.1.14
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
