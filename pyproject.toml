@@ -2,90 +2,69 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
-name = "MeteoEcran"
-dynamic = ["version"]
+name = "meteoecran"
+version = "0.0.1"
 description = "Current weather and forecast for digital signage"
 readme = "README.md"
-requires-python = ">=3.9,<3.10"
-license = "EUPL-1.2 OR AGPL-3.0-only"
+license = {text = "EUPL-1.2 OR AGPL-3.0-only"}
 authors = [
-    { name = "Nikita Karamov", email = "me@kytta.dev" },
+    {name = "Nikita Karamov", email = "me@kytta.dev"},
+]
+requires-python = "==3.9.*"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+]
+dynamic = [
+  "version",
 ]
 dependencies = [
-    "httpx>=0.24",
-    "starlette[full]",
-    "uvicorn[standard]",
-    "gunicorn",
+  "gunicorn",
+  "httpx>=0.24",
+  "starlette[full]",
+  "uvicorn[standard]",
 ]
-
 [project.urls]
 Documentation = "https://github.com/kytta/MeteoEcran#readme"
 Issues = "https://github.com/kytta/MeteoEcran/issues"
 Source = "https://github.com/kytta/MeteoEcran"
 
-[tool.hatch.version]
-path = "meteoecran/__about__.py"
+[tool.pdm]
+distribution = false
 
-[tool.hatch.envs.default]
-python = "3.9"
-
-[tool.hatch.envs.default.scripts]
+[tool.pdm.scripts]
 dev = "uvicorn --reload meteoecran:app"
 
-[tool.hatch.envs.lint]
-detached = true
-dependencies = [
+types = "mypy --install-types --non-interactive {args:meteoecran}"
+lint = {composite = [
+    "ruff {args:.}",
+    "autopep8 --diff --recursive {args:.}",
+]}
+fmt = {composite = [
+    "autopep8 --in-place --recursive {args:.}",
+    "ruff --fix {args:.}",
+    "style",
+]}
+check = {composite = [
+    "style",
+    "typing",
+]}
+reqs = "{pdm} export --production --format requirements --output requirements.txt"
+
+[tool.pdm.dev-dependencies]
+lint = [
     "autopep8",
     "mypy>=1.0.0",
     "ruff>=0.0.243",
 ]
-[tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:meteoecran}"
-style = [
-    "ruff {args:.}",
-    "autopep8 --diff --recursive {args:.}",
-]
-fmt = [
-    "autopep8 --in-place --recursive {args:.}",
-    "ruff --fix {args:.}",
-    "style",
-]
-all = [
-    "style",
-    "typing",
-]
 
-[tool.hatch.envs.reqs]
-detached = true
-python = "3.9"
-dependencies = [
-    "pip-tools>=6",
-]
-[tool.hatch.envs.reqs.scripts]
-compile = "pip-compile --header --annotate --output-file=requirements.txt --allow-unsafe --generate-hashes --resolver=backtracking {args:pyproject.toml}"
+[tool.pdm.version]
+source = "file"
+path = "meteoecran/__about__.py"
 
 [tool.autopep8]
 ignore = ["W503"]
-
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_untyped_defs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-
-[[tool.mypy.overrides]]
-module = ["tests.*"]
-ignore_missing_imports = true
-check_untyped_defs = false
-disallow_incomplete_defs = false
-disallow_untyped_defs = false
 
 [tool.ruff]
 target-version = "py39"
@@ -153,3 +132,18 @@ max-doc-length = 72
 
 [tool.ruff.pydocstyle]
 convention = "pep257"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+ignore_missing_imports = true
+check_untyped_defs = false
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
