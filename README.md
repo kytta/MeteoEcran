@@ -3,6 +3,12 @@
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+<p align="center">
+  <a href="https://github.com/kytta/MeteoEcran">
+    <img src="./assets/logo.svg" width="512" height="512" />
+  </a>
+</p>
+
 ![](./assets/logo.svg)
 
 # MeteoÉcran
