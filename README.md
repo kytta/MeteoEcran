@@ -3,6 +3,8 @@
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+![](./assets/logo.svg)
+
 # MeteoÉcran
 
 > Current weather and forecast for digital signage
