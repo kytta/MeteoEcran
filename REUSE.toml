@@ -1,0 +1,9 @@
+# © 2024 Nikita Karamov
+#
+# SPDX-License-Identifier: CC0-1.0
+
+version = 1
+SPDX-PackageName = "MeteoÉcran"
+SPDX-PackageSupplier = "Nikita Karamov <me@kytta.dev>"
+SPDX-PackageDownloadLocation = "https://github.com/kytta/MeteoEcran"
+annotations = []
