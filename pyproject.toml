@@ -18,9 +18,9 @@ authors = [
 ]
 dependencies = [
     "httpx>=0.24",
-    "starlette[full]",
+    "starlette[full]>=0.40.0",
     "uvicorn[standard]",
-    "gunicorn",
+    "gunicorn>=22.0.0",
 ]
 
 [project.urls]
@@ -67,7 +67,7 @@ dependencies = [
     "pip-tools>=6",
 ]
 [tool.hatch.envs.reqs.scripts]
-compile = "pip-compile --header --annotate --output-file=requirements.txt --allow-unsafe --generate-hashes --resolver=backtracking {args:pyproject.toml}"
+compile = "pip-compile --header --annotate --output-file=requirements.txt --allow-unsafe --generate-hashes {args:pyproject.toml}"
 
 [tool.autopep8]
 ignore = ["W503"]
