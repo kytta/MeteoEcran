@@ -13,6 +13,6 @@ class MeteoEcranWorker(UvicornWorker):
 
 
 __all__ = [
-    "app",
     "MeteoEcranWorker",
+    "app",
 ]
