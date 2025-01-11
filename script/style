@@ -1,10 +1,9 @@
 #!/bin/sh
-# Compiles Python dependencies with pip-compile
-#
 # © 2025 Nikita Karamov <me@kytta.dev>
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 set -eu
 
-uv export --no-dev --frozen --output-file=requirements.txt
+uv run --group lint ruff check "${@:-.}"
+uv run --group lint autopep8 --diff --recursive "${@:-.}"

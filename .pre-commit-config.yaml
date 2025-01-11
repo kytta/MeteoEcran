@@ -69,3 +69,8 @@ repos:
         types_or:
           - jinja
           - html
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.5.8
+    hooks:
+      - id: uv-export
+        args: [ "--no-dev", "--frozen", "--output-file=requirements.txt" ]
