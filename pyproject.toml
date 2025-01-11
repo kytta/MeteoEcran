@@ -28,30 +28,12 @@ Documentation = "https://github.com/kytta/MeteoEcran#readme"
 Issues = "https://github.com/kytta/MeteoEcran/issues"
 Source = "https://github.com/kytta/MeteoEcran"
 
-[tool.hatch.envs.default.scripts]
-dev = "uvicorn --reload meteoecran:app"
-
 [tool.hatch.envs.lint]
 detached = true
 dependencies = [
     "autopep8",
     "mypy>=1.0.0",
     "ruff>=0.0.243",
-]
-[tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive {args:meteoecran}"
-style = [
-    "ruff {args:.}",
-    "autopep8 --diff --recursive {args:.}",
-]
-fmt = [
-    "autopep8 --in-place --recursive {args:.}",
-    "ruff --fix {args:.}",
-    "style",
-]
-all = [
-    "style",
-    "typing",
 ]
 
 [tool.hatch.envs.reqs]
@@ -60,8 +42,6 @@ python = "3.9"
 dependencies = [
     "pip-tools>=6",
 ]
-[tool.hatch.envs.reqs.scripts]
-compile = "pip-compile --header --annotate --output-file=requirements.txt --allow-unsafe --generate-hashes {args:pyproject.toml}"
 
 [tool.autopep8]
 ignore = ["W503"]

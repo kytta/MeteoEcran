@@ -1,0 +1,8 @@
+#!/bin/sh
+# © 2025 Nikita Karamov <me@kytta.dev>
+#
+# SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+
+set -eu
+
+.venv/bin/mypy --install-types --non-interactive "${@:-meteoecran}"

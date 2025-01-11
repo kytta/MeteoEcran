@@ -1,10 +1,10 @@
 #!/bin/sh
 # Compiles Python dependencies with pip-compile
 #
-# © 2023 Nikita Karamov <n.karamov@tu-braunschweig.de>
+# © 2025 Nikita Karamov <me@kytta.dev>
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 set -eu
 
-hatch run reqs:compile "$@"
+uv pip compile --allow-unsafe --generate-hashes --output-file=requirements.txt "${@:-pyproject.toml}"
