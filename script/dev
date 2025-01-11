@@ -5,4 +5,4 @@
 
 set -eu
 
-.venv/bin/uvicorn --reload meteoecran:app
+uv run uvicorn --reload meteoecran:app

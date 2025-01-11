@@ -5,5 +5,5 @@
 
 set -eu
 
-.venv/bin/ruff check "${@:-.}"
-.venv/bin/autopep8 --diff --recursive "${@:-.}"
+uv run --group lint ruff check "${@:-.}"
+uv run --group lint autopep8 --diff --recursive "${@:-.}"

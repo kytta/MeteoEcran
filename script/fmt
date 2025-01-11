@@ -5,6 +5,6 @@
 
 set -eu
 
-.venv/bin/autopep8 --in-place --recursive "${@:-.}"
-.venv/bin/ruff check --fix "${@:-.}"
+uv run --group lint autopep8 --in-place --recursive .
+uv run --group lint ruff check --fix "${@:-.}"
 "$(dirname "$0")"/style

@@ -7,4 +7,4 @@
 
 set -eu
 
-uv pip compile --allow-unsafe --generate-hashes --output-file=requirements.txt "${@:-pyproject.toml}"
+uv export --no-dev --frozen --output-file=requirements.txt

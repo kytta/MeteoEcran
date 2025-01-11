@@ -5,4 +5,4 @@
 
 set -eu
 
-.venv/bin/mypy --install-types --non-interactive "${@:-meteoecran}"
+uv run --group lint mypy --install-types --non-interactive "${@:-meteoecran}"
