@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "MeteoEcran"
-dynamic = ["version"]
+version = "0.1.0"
 description = "Current weather and forecast for digital signage"
 readme = "README.md"
 requires-python = ">=3.9,<3.10"
@@ -27,9 +27,6 @@ dependencies = [
 Documentation = "https://github.com/kytta/MeteoEcran#readme"
 Issues = "https://github.com/kytta/MeteoEcran/issues"
 Source = "https://github.com/kytta/MeteoEcran"
-
-[tool.hatch.version]
-path = "meteoecran/__about__.py"
 
 [tool.hatch.envs.default]
 python = "3.9"
