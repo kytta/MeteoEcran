@@ -14,7 +14,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 1. **(recommended)** Create a virtualenv for the project
 
    ```sh
-   virtualenv --python python3.9 --no-download --no-periodic-update venv
+   virtualenv --python python3.11 --no-download --no-periodic-update venv
    ```
 
 1. Install dependencies
