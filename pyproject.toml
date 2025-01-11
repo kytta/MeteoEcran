@@ -28,19 +28,11 @@ Documentation = "https://github.com/kytta/MeteoEcran#readme"
 Issues = "https://github.com/kytta/MeteoEcran/issues"
 Source = "https://github.com/kytta/MeteoEcran"
 
-[tool.hatch.envs.lint]
-detached = true
-dependencies = [
-    "autopep8",
+[dependency-groups]
+lint = [
+    "autopep8>=2.3.1",
     "mypy>=1.0.0",
     "ruff>=0.0.243",
-]
-
-[tool.hatch.envs.reqs]
-detached = true
-python = "3.9"
-dependencies = [
-    "pip-tools>=6",
 ]
 
 [tool.autopep8]
