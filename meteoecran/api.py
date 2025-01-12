@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 import datetime
-from typing import Optional
 
 import httpx
 
@@ -65,7 +64,7 @@ def get_name_for_location(location: GeoLocation):
     return r_json["display_name"]
 
 
-def get_geolocation_for_query(query: str) -> Optional[GeoLocation]:
+def get_geolocation_for_query(query: str) -> GeoLocation | None:
     with httpx.Client(base_url=GEOCODE_URL) as client:
         r = client.get(
             "/search",
@@ -90,6 +89,7 @@ def convert_daily_to_forecast(daily_json: dict) -> list[Forecast]:
         daily_json["weathercode"],
         daily_json["temperature_2m_max"],
         daily_json["temperature_2m_min"],
+        strict=False,
     )
 
     for date, code, t_max, t_min in zipped:
