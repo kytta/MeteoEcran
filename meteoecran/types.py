@@ -233,7 +233,7 @@ class WeatherCondition(TypedDict):
     icon: str
 
 
-def get_condition_from_code(code: WeatherConditionCode):
+def get_condition_from_code(code: WeatherConditionCode) -> WeatherCondition:
     kwargs = {
         "prefix": "Das Wetter ist",
         "condition": "unbekannt",
@@ -246,7 +246,10 @@ def get_condition_from_code(code: WeatherConditionCode):
 
     return WeatherCondition(
         code=code,
-        **kwargs,
+        prefix=kwargs["prefix"],
+        condition=kwargs["condition"],
+        icon=kwargs["icon"],
+        color=kwargs["color"],
     )
 
 

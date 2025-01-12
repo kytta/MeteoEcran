@@ -4,12 +4,12 @@
 
 from uvicorn.workers import UvicornWorker
 
+from meteoecran.config import uvicorn_kwargs
 from meteoecran.web import app
-from meteoecran.web import config
 
 
 class MeteoEcranWorker(UvicornWorker):
-    CONFIG_KWARGS = config.uvicorn_kwargs
+    CONFIG_KWARGS = uvicorn_kwargs
 
 
 __all__ = [
