@@ -1,0 +1,38 @@
+# © 2025 Nikita Karamov <me@kytta.dev>
+#
+# SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
+
+---
+name: CI
+
+on:
+  merge_group:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - main
+
+env:
+  FORCE_COLOR: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PIP_NO_PYTHON_VERSION_WARNING: "1"
+
+jobs:
+  mypy:
+    name: Mypy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+      - uses: hynek/setup-cached-uv@v2
+      - run: ./script/typing
