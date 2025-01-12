@@ -5,4 +5,4 @@
 
 set -eu
 
-uv run --group typing mypy --install-types --non-interactive "${@:-meteoecran}"
+uv run --group typing mypy "${@:-meteoecran}"
