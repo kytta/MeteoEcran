@@ -183,8 +183,10 @@ dependencies = [
 [package.dev-dependencies]
 lint = [
     { name = "autopep8" },
-    { name = "mypy" },
     { name = "ruff" },
+]
+typing = [
+    { name = "mypy" },
 ]
 
 [package.metadata]
@@ -198,9 +200,9 @@ requires-dist = [
 [package.metadata.requires-dev]
 lint = [
     { name = "autopep8", specifier = ">=2.3.1" },
-    { name = "mypy", specifier = ">=1.0.0" },
     { name = "ruff", specifier = ">=0.0.243" },
 ]
+typing = [{ name = "mypy", specifier = ">=1.4" }]
 
 [[package]]
 name = "mypy"

@@ -27,8 +27,10 @@ Source = "https://github.com/kytta/MeteoEcran"
 [dependency-groups]
 lint = [
     "autopep8>=2.3.1",
-    "mypy>=1.0.0",
     "ruff>=0.0.243",
+]
+typing = [
+    "mypy>=1.4",
 ]
 
 [tool.autopep8]
