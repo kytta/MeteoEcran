@@ -4,7 +4,7 @@
 
 import uvicorn
 
-from meteoecran import config
+from meteoecran.config import uvicorn_kwargs
 
 if __name__ == "__main__":
-    uvicorn.run("meteoecran:app", **config.uvicorn_kwargs)
+    uvicorn.run("meteoecran:app", **uvicorn_kwargs)  # type: ignore

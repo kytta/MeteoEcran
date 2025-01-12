@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
 import datetime
+from typing import TYPE_CHECKING
+from typing import NotRequired
+from typing import TypedDict
 
 import httpx
 
@@ -13,6 +16,9 @@ from meteoecran.types import Temperature
 from meteoecran.types import WeatherConditionCode
 from meteoecran.types import WeatherState
 from meteoecran.types import get_condition_from_code
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 GEOCODE_URL = "https://geocode.maps.co"
 METEO_URL = "https://api.open-meteo.com/v1/dwd-icon"
@@ -39,7 +45,18 @@ METEO_PARAMS = {
 }
 
 
-def get_name_for_location(location: GeoLocation):
+class GeoReverseAddress(TypedDict):
+    village: NotRequired[str]
+    town: NotRequired[str]
+    city: NotRequired[str]
+
+
+class GeoReverseResultPartial(TypedDict):
+    address: GeoReverseAddress
+    display_name: str
+
+
+def get_name_for_location(location: GeoLocation) -> str:
     with httpx.Client(base_url=GEOCODE_URL) as client:
         r = client.get(
             "/reverse",
@@ -49,7 +66,7 @@ def get_name_for_location(location: GeoLocation):
             },
         )
 
-    r_json = r.json()
+    r_json: GeoReverseResultPartial = r.json()
     address = r_json["address"]
 
     if "village" in address:
@@ -64,6 +81,11 @@ def get_name_for_location(location: GeoLocation):
     return r_json["display_name"]
 
 
+class GeocodeResultPartial(TypedDict):
+    lat: float
+    lon: float
+
+
 def get_geolocation_for_query(query: str) -> GeoLocation | None:
     with httpx.Client(base_url=GEOCODE_URL) as client:
         r = client.get(
@@ -73,7 +95,7 @@ def get_geolocation_for_query(query: str) -> GeoLocation | None:
             },
         )
 
-    results: list = r.json()
+    results: Sequence[GeocodeResultPartial] = r.json()
 
     if len(results) == 0:
         return None
@@ -81,7 +103,7 @@ def get_geolocation_for_query(query: str) -> GeoLocation | None:
     return GeoLocation(results[0]["lat"], results[0]["lon"])
 
 
-def convert_daily_to_forecast(daily_json: dict) -> list[Forecast]:
+def convert_daily_to_forecast(daily_json) -> list[Forecast]:  # type: ignore
     result = []
 
     zipped = zip(
@@ -105,7 +127,12 @@ def convert_daily_to_forecast(daily_json: dict) -> list[Forecast]:
     return result
 
 
-def get_weather_for_location(location: GeoLocation):
+class Weather(TypedDict):
+    current: WeatherState
+    daily: list[Forecast]
+
+
+def get_weather_for_location(location: GeoLocation) -> Weather:
     with httpx.Client(base_url=METEO_URL) as client:
         r = client.get(
             "",

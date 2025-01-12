@@ -27,27 +27,19 @@ Source = "https://github.com/kytta/MeteoEcran"
 [dependency-groups]
 lint = [
     "autopep8>=2.3.1",
-    "mypy>=1.0.0",
     "ruff>=0.0.243",
+]
+typing = [
+    "mypy>=1.4",
 ]
 
 [tool.autopep8]
 ignore = ["W503"]
 
 [tool.mypy]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_untyped_defs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-
-[[tool.mypy.overrides]]
-module = ["tests.*"]
-ignore_missing_imports = true
-check_untyped_defs = false
-disallow_incomplete_defs = false
-disallow_untyped_defs = false
+strict = true
+pretty = true
+show_error_codes = true
 
 [tool.ruff]
 target-version = "py311"

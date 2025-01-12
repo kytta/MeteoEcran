@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: EUPL-1.2 OR AGPL-3.0-only
 
+import datetime as dt
 import locale
 from zoneinfo import ZoneInfo
 
@@ -10,8 +11,8 @@ from starlette.config import Config
 config = Config(".env", env_prefix="METEOECRAN_")
 
 DEBUG = config("DEBUG", cast=bool, default=False)
-TIMEZONE = config("TIMEZONE", cast=ZoneInfo, default="UTC")
-LOCALE = config("LOCALE", default=False)
+TIMEZONE = config("TIMEZONE", cast=ZoneInfo, default=dt.UTC)
+LOCALE = config("LOCALE", default=None)
 
 if LOCALE:
     locale.setlocale(locale.LC_ALL, LOCALE)

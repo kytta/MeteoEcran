@@ -6,8 +6,10 @@ import datetime
 from pathlib import Path
 
 from starlette.applications import Starlette
+from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.responses import RedirectResponse
+from starlette.responses import Response
 from starlette.routing import Mount
 from starlette.routing import Route
 from starlette.staticfiles import StaticFiles
@@ -24,7 +26,7 @@ SOURCE_DIR = Path(__file__).parent
 templates = Jinja2Templates(directory=SOURCE_DIR / "templates")
 
 
-async def homepage(request):
+async def homepage(request: Request) -> Response:
     return templates.TemplateResponse("index.html.jinja", {
         "request": request,
         "title": "MeteoEcran",
@@ -32,7 +34,7 @@ async def homepage(request):
     })
 
 
-async def search(request):
+async def search(request: Request) -> Response:
     query: str | None = request.query_params.get("q", None)
 
     if not query:
@@ -61,7 +63,7 @@ async def search(request):
     return RedirectResponse(url)
 
 
-async def geo(request):
+async def geo(request: Request) -> Response:
     lat: str | None = request.query_params.get("lat", None)
     lon: str | None = request.query_params.get("lon", None)
 
