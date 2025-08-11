@@ -3,6 +3,14 @@
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
+# MeteoÉcran is now on Codeberg
+
+I've had enough with GitHub. This repository is now on Codeberg: https://codeberg.org/kytta/MeteoEcran.git
+
+The repository on GitHub will stay archived (read-only) for a few months before I delete it for good.
+
+<details><summary>Previous README</summary>
+
 # MeteoÉcran
 
 > Current weather and forecast for digital signage
@@ -59,3 +67,5 @@ This project is hosted on GitHub:
 [cc-by-sa-4.0]: https://spdx.org/licenses/CC-BY-SA-4.0.html
 [eupl-1.2]: https://spdx.org/licenses/EUPL-1.2.html
 [nikita karamov]: https://www.kytta.dev/
+
+</details>
